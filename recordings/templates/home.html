@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% if user.is_authenticated %}
+            <h5 class="col-xs-12">
+                <a href="{% url 'logout' %}">Log out</a>
+            </h5>
+
+            <h2 class="col-xs-12">Hi {{ user.username }}!</h2>
+
+            <div class="col-xs-10">
+                <ul>
+                    {% for video in video_list %}
+                        <li class="record-item flex-space-between">
+                            <a class="pointer" href="{% url 'updateVideo' video.pk %}">{{ video.title }}</a>
+                            <a class="pointer" onclick="delete_video({{ video.pk }})">
+                                Delete
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-xs-12">
+                <a class="btn btn-primary" href="{% url 'createRecording' %}">Create</a>
+            </div>
+
+        {% else %}
+            <div class="container flex-centered-column">
+                <h1>Welcome!</h1>
+                <h2>You are not logged in</h2>
+
+                <a class="btn btn-primary" href="{% url 'login' %}">Log in</a>
+                <span>Not registered yet? <a href="{% url 'signup' %}">Sign Up</a></span>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

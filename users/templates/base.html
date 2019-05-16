@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <title>Upload Videos</title>
+    <style>
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type=text], input[type=password] {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+
+        #id_video_file {
+            border: none;
+            box-shadow: none;
+            padding-left: inherit;
+        }
+
+        .record-item {
+            border-bottom: 1px solid #e3e3e3;
+            line-height: 40px;
+        }
+
+        .flex-space-between {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flex-centered-column {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        ul {
+            padding-left: 15px;
+        }
+
+        .no-list-style {
+            padding-left: 0;
+            list-style: none;
+        }
+
+    </style>
+    <script>
+        function delete_video(pk) {
+            $.get('deleteVideo/' + pk + '/', function (data) {
+                alert("Video was deleted.");
+                location.reload();
+            });
+        }
+    </script>
+</head>
+<body>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>
